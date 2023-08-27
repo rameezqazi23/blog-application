@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const cookieParser = require("cookie-parser");
 const USER = require("../models/user");
+const { setUser } = require("../service/auth");
 
 router.post("/signup", async (req, res) => {
     const { fullName, email, password } = req.body
@@ -19,14 +21,33 @@ router.get("/signin", (req, res) => {
 
 router.get("/signup", (req, res) => {
     return res.render("signup")
+
 })
 
 router.post("/signin", async (req, res) => {
     const { email, password } = req.body
-    const user = USER.matchPassword(email, password)
-    console.log("User data==>", user)
 
-    return res.redirect("/")
+    try {
+        const token = await USER.matchPassword(email, password)
+        res.cookie("userToken", token)
+        return res.redirect("/")
+
+    } catch (error) {
+        return res.render("signin", {
+            error: "Invalid email or password"
+        })
+
+    }
+
+    // console.log("Token data==>", token)
+
+    // const checkUserAuth = await USER.findOne({ email, password })
+    // if(!checkUserAuth) return null;
+
+    // const token = setUser(checkUserAuth)
+    // res.cookie("uid", token)
+
+
 })
 
 module.exports = router;
