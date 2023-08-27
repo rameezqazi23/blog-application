@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+        <title>Sign Up</title>
+</head>
+
+<body>
+
+
+    <div class='w-full h-screen'>
+
+       
+        <div class='fixed w-full px-4 py-12 z-50'>
+
+            <div
+                class='max-w-[400px] h-[500px] mx-auto bg-[#f5f5f5] rounded-2xl drop-shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-100 text-white '>
+                <div class='max-w-[320px] mx-auto py-16'>
+                    <h1 class='text-3xl font-bold text-[#2f2f2f]'>Sign In</h1>
+
+                    <form action="/user/signin" method="post" class='w-full flex flex-col py-4 '>
+                        <input name="email" class='p-2 my-2 bg-[#2e2e2e] rounded bg-white text-black' type="email" placeholder='Email' />
+                        <input name="password" class='p-2 my-2 bg-[#2e2e2e] rounded bg-white text-black' type="password" placeholder='Password'
+                            autoComplete='currentPassword' />
+                        <button type="submit" class='bg-blue-600 py-2 my-4 rounded font-bold w-24'>Sign In</button>
+                        <div class='flex justify-between items-center text-sm text-gray-500'>
+                            <p>
+                                <input type="checkbox" /> Remember Me
+                            </p>
+                            <p>Need help?</p>
+                        </div>
+                        <p class='py-8 '>
+                            <span class='text-gray-500'>New User?</span>
+                            <a class='text-black text-sm' to='/signup'> Sign Up Now</a>
+                        </p>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('./partials/script.ejs') %>
+</body>
+
+</html>
