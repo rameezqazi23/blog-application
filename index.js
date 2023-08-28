@@ -1,7 +1,9 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/user");
 const { connectToMongoDb } = require("./connect");
+const { checkAuthenticationCookie } = require("./middlewares/auth");
 
 
 const app = express();
@@ -10,6 +12,8 @@ const PORT = 5000;
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser());
+app.use(checkAuthenticationCookie("userToken"))
 
 
 app.set("view engine", "ejs")
@@ -17,11 +21,14 @@ app.set("views", path.resolve("./views"))
 
 //Routes
 app.get("/", (req, res) => {
-    return res.render("home")
+    console.log("User Object==>", req.user)
+    
+    return res.render("home", {
+        user: req.user,
+    })
 })
 
 app.use("/user", userRoute)
-
 
 
 
