@@ -1,49 +1,46 @@
-<div
-    class="fixed w-full h-[50px] flex justify-between items-center px-4 text-gray-800 font-sans bg-[#dddddd]  backdrop-filter backdrop-blur-sm bg-opacity-100">
-    <div>
-        <h2 class="font-bold text-2xl">Blogify</h2>
-    </div>
-    <% if (locals.user) { %>
+<nav class="navbar bg-body-tertiary container-fluid">
+
+    <div
+        class="bg-body-tertiary w-full h-[50px] flex justify-between items-center px-4 text-gray-800 font-sans bg-[#dddddd]  backdrop-filter backdrop-blur-sm bg-opacity-100">
         <div>
-            <p class="text-xl font-bold">
-                <a href="">Add blog</a>
-
-            </p>
+            <h2 class="font-bold text-2xl">Blogify</h2>
         </div>
+        <% if (locals.user) { %>
+            <div>
+                <p class="text-xl font-bold">
+                    <a href="">Add blog</a>
 
-        <% } %>
+                </p>
+            </div>
 
-            <ul class="flex">
-                <li class="px-2">
-                    <a href="/">Home</a>
+            <% } %>
 
-                </li>
-
-                <% if (!locals.user) { %>
+                <ul class="flex">
                     <li class="px-2">
-                        <a href="/user/signin">Signin</a>
+                        <a href="/">Home</a>
+
                     </li>
 
-                    <% }else{ %>
+                    <% if (!locals.user) { %>
                         <li class="px-2">
-                            <a href="/user/signin">Logout</a>
+                            <a href="/user/signin">Signin</a>
                         </li>
-                        
 
-                        <% } %>
-
-
-            </ul>
-
-</div>
+                        <% }else{ %>
+                            <li class="px-2">
+                                <a href="/user/logout">Logout</a>
+                            </li>
 
 
+                            <% } %>
 
 
+                </ul>
+
+    </div>
 
 
-
-
+</nav>
 
 
 

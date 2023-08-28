@@ -8,6 +8,7 @@ const createTokenForUser = (user) => {
         email: user.email,
         profileImageUrl: user.profileImageUrl,
         role: user.role,
+        name:user.fullName,
     }
 
     const token = jwt.sign(payload, secretKey)
