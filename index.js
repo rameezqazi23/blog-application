@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/user");
+const blogRoute = require("./routes/blog");
 const { connectToMongoDb } = require("./connect");
 const { checkAuthenticationCookie } = require("./middlewares/auth");
 
@@ -22,13 +23,16 @@ app.set("views", path.resolve("./views"))
 //Routes
 app.get("/", (req, res) => {
     console.log("User Object==>", req.user)
-    
+
     return res.render("home", {
         user: req.user,
     })
 })
 
+
+//Routes---
 app.use("/user", userRoute)
+app.use("/blog", blogRoute)
 
 
 

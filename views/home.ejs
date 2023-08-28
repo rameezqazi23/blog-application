@@ -7,7 +7,7 @@
   <%- include('./partials/head.ejs') %>
 
 
-    <title>Document</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -18,15 +18,14 @@
 
     </div>
     
-    
-    <div>
-      <%- include('./partials/blogContent.ejs') %>
-      
-      
-    </div>
     <div>
       <%= JSON.stringify(user) %>
       
+    </div>
+    <div>
+      <%- include('./partials/blogContent.ejs') %>
+
+
     </div>
     
   </div>
