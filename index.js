@@ -1,10 +1,12 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const userRoute = require("./routes/user");
-const blogRoute = require("./routes/blog");
 const { connectToMongoDb } = require("./connect");
 const { checkAuthenticationCookie } = require("./middlewares/auth");
+
+const userRoute = require("./routes/user");
+const blogRoute = require("./routes/blog");
+const Blog = require("./models/blog");
 
 
 const app = express();
@@ -15,17 +17,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(checkAuthenticationCookie("userToken"))
+app.use(express.static(path.resolve("./public")))
 
 
 app.set("view engine", "ejs")
 app.set("views", path.resolve("./views"))
 
 //Routes
-app.get("/", (req, res) => {
-    console.log("User Object==>", req.user)
+app.get("/", async (req, res) => {
+    // console.log("User Object==>", req.user)
+    const allBlogs = await Blog.find({});
 
     return res.render("home", {
         user: req.user,
+        blogs: allBlogs,
     })
 })
 
