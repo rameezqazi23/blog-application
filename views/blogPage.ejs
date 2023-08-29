@@ -9,12 +9,25 @@
 
 
             <title>Blog Page</title>
+            <style>
+                .paragraph-content {
+                    white-space: pre-line;
+                }
+            </style>
 </head>
 
 <body>
-    <div class="flex items-center justify-center mt-4">
-
-        <h1>Blog View Section</h1>
+    <div class="p-4 md:p-8 mx-auto max-w-screen-lg h-screen font-sans my-12">
+        <h1 class=" text-center text-3xl md:text-4xl font-semibold mb-8">
+            <%= blog.title %>
+        </h1>
+        <h3 class="text-center text-xl font-semibold mb-12">Author <%= user.name %></h3>
+        <div class=" flex justify-center aspect-h-9 mb-4">
+            <img src="<%= blog.coverImageUrl %>" alt="Blog Image" class="object-cover rounded-lg" width="700">
+        </div>
+        <p class="text-gray-900 leading-relaxed paragraph-content mb-8">
+            <%= blog.body %>
+        </p>
     </div>
 
     <%- include('./partials/script.ejs') %>
