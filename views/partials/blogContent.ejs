@@ -35,9 +35,23 @@
                             Share
                         </button>
                     </div>
-                    <p class="text-gray-500 text-sm mb-1">Rameez Qazi</p>
-                    <p class="text-gray-500 text-sm">Created at <%= blog.createdAt %>
-                    </p>
+
+
+                    <div class='text-center mt-6'>
+
+                        <a class='text-white bg-gray-800 hover:bg-[#53565a] py-2 px-4 rounded-[8px] font-500 ease-in duration-100 cursor-pointer'
+                            href="<%= blog._id %>"
+                            >
+                            Read Blog
+                        </a>
+
+                    </div>
+                    <div>
+
+                        <p class="text-gray-500 text-sm mb-1">Rameez Qazi</p>
+                        <p class="text-gray-500 text-sm">Created at <%= blog.createdAt %>
+                        </p>
+                    </div>
                 </div>
 
                 <% }) %>
