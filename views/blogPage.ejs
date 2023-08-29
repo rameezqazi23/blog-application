@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('./partials/head.ejs') %>
         <%- include('./partials/nav.ejs') %>
-
-
             <title>Blog Page</title>
             <style>
                 .paragraph-content {
@@ -21,14 +19,72 @@
         <h1 class=" text-center text-3xl md:text-4xl font-semibold mb-8">
             <%= blog.title %>
         </h1>
-        <h3 class="text-center text-xl font-semibold mb-12">Author <%= user.name %></h3>
+        <div>
+            <h3 class="text-center text-xl font-semibold mb-12">Author <%= blog.creator.fullName %>
+            </h3>
+            <img src="<%= blog.creator.profileImageUrl %>" alt="Profile Image" width="100">
+
+        </div>
         <div class=" flex justify-center aspect-h-9 mb-4">
             <img src="<%= blog.coverImageUrl %>" alt="Blog Image" class="object-cover rounded-lg" width="700">
         </div>
         <p class="text-gray-900 leading-relaxed paragraph-content mb-8 paragraph-content">
             <%= blog.body %>
         </p>
+
+
+        <div  class="my-16">
+            <h2 class="text-xl font-semibold mb-4"><%= comments.length %> User Comments</h2>
+            <% comments.forEach(comment=> { %>
+
+                <div class="my-16">
+                    <div class="space-y-4">
+                        <!-- User comments display -->
+                        <div class="flex space-x-4">
+                            <img src="https://via.placeholder.com/40" alt="User Profile" class="w-10 h-10 rounded-full">
+                            <div class="flex-grow">
+                                <h3 class="font-semibold">
+                                    <%= comment.creator.fullName %>
+                                </h3>
+                                <p class="text-gray-500">
+                                    <%= comment.creator.createdAt %>
+                                </p>
+                                <p>
+                                    <%= comment.content %>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Repeat the above structure for more comments -->
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+
+        <% if (locals.user) { %>
+
+            <form action="/blog/comment/<%= blog._id %>" method="post"
+                class="flex flex-col justify-center w-[400px] m-8">
+                <div class="mb-4">
+                    <label for="comment" class="block font-semibold mb-1">Comment</label>
+                    <textarea id="comment" name="content"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" rows="4"
+                        placeholder="Write your comment"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 mb-8">Post
+                    Comment</button>
+            </form>
+            <% } %>
+
+
+
+
+
+
+
+
     </div>
+
 
     <%- include('./partials/script.ejs') %>
 </body>

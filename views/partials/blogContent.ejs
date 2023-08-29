@@ -6,17 +6,18 @@
 
             <% blogs.forEach(blog=> { %>
                 <div class="bg-[#eeeded] p-4 rounded-lg shadow-md mt-4 h-full">
-                    <h2 class="text-2xl font-semibold mb-4">
-                        <%= blog.title %>
-                    </h2>
-                    <!-- <pre class="text-gray-600 mb-4">
-                <%= blog.body %>
-                </pre> -->
+                    <div class="flex w-full h-[100px] items-center">
+
+                        <h2 class="text-xl font-semibold mb-4">
+                            <%= blog.title %>
+                        </h2>
+                    </div>
+                    
                     <!-- <div class=" flex aspect-w-4 aspect-h-3 mb-4 justify-center">
                         
                     </div> -->
                     <figure>
-                        <img src="<%= blog.coverImageUrl %>" alt="Blog Image" class="mb-4 rounded-lg">
+                        <img src="<%= blog.coverImageUrl %>" alt="Blog Image" class="mb-4 rounded-lg bg-cover">
 
                     </figure>
                     <div class="flex items-center justify-between mb-2">
@@ -36,21 +37,22 @@
                         </button>
                     </div>
 
-
-                    <div class='text-center mt-6'>
-
-                        <a class='text-white bg-gray-800 hover:bg-[#53565a] py-2 px-4 rounded-[8px] font-500 ease-in duration-100 cursor-pointer'
-                            href="/blog/<%= blog._id %>"
-                            >
-                            Read Blog
-                        </a>
-
-                    </div>
                     <div>
 
-                        <p class="text-gray-500 text-sm mb-1"><%= user.name %></p>
-                        <p class="text-gray-500 text-sm">Created at <%= blog.createdAt %>
-                        </p>
+                        <div class='text-center mt-6'>
+
+                            <a class='text-white bg-gray-800 hover:bg-[#53565a] py-2 px-4 rounded-[8px] font-500 ease-in duration-100 cursor-pointer'
+                                href="/blog/<%= blog._id %>">
+                                Read Blog
+                            </a>
+
+                        </div>
+                        <div>
+
+                            <p class="text-gray-500 text-sm mb-1">Rameez</p>
+                            <p class="text-gray-500 text-sm">Created at <%= blog.createdAt %>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
